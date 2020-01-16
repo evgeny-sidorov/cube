@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Кубик рубика</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+		<!-- Script -->
+	<script type="text/javascript" src="js/cube.js"></script>
+	<script type="text/javascript">
+		var cube;
+		function setSize(n)
+		{
+			cube.setParam({size: n});
+		}
+
+		function shuffle(animation)
+		{
+			cube.shuffle(50,animation);
+		}
+
+		function reset()
+		{
+			cube.reset();
+		}
+
+		function zoomIn()
+		{
+			cube.setParam({zoom: cube.zoom*1.2});
+		}
+
+		function zoomOut()
+		{
+			cube.setParam({zoom: cube.zoom/1.2});
+		}
+
+		function zoomFit()
+		{
+			cube.setParam({zoom: 1});
+		}
+
+		function setShiny(n)
+		{
+			cube.setParam({shiny: n});
+		}
+
+		function undo()
+		{
+			cube.undo();
+		}
+
+		function start()
+		{
+		cube = new RubikCube(document.getElementById("canvas"), {size: 3});
+		}
+	</script>
+</head>
+<body onload="start()">
+	<div class="wrapper">
+	<ul>
+		<li onclick="setShiny(0);return false"><a href="#">Плоский</a></li>
+		<li onclick="setShiny(0.25);return false"><a href="#">Объем</a></li>
+		<li onclick="zoomIn();return false"><a href="#">Увеличить</a></li>
+		<li onclick="zoomOut();return false"><a href="#">Уменьшить</a></li>
+		<li onclick="zoomFit();return false"><a href="#">Стандартный размер</a></li>
+		<li onclick="shuffle(0);return false"><a href="#">Перемешать</a></li>
+		<li onclick="shuffle(2);return false"><a href="#">Перемешать (анимация)</a></li>
+		<li onclick="reset();return false"><a href="#">Собрать</a></li>
+		<li onclick="undo();return false"><a href="#">Назад</a></li>
+		<li id="hider">Размеры</li>
+	</ul>
+	<ul class="function" id="block">
+		<li onclick="setSize(2);return false"><a href="#">2x2</a></li>
+		<li onclick="setSize(3);return false"><a href="#">3x3</a></li>
+		<li onclick="setSize(4);return false"><a href="#">4x4</a></li>
+		<li onclick="setSize(5);return false"><a href="#">5x5</a></li>
+		<li onclick="setSize(6);return false"><a href="#">6x6</a></li>
+		<li onclick="setSize(7);return false"><a href="#">7x7</a></li>
+		<li onclick="setSize(8);return false"><a href="#">8x8</a></li>
+		<li onclick="setSize(9);return false"><a href="#">9x9</a></li>
+		<li onclick="setSize(10);return false"><a href="#">10x10</a></li>
+		<li onclick="setSize(11);return false"><a href="#">11x11</a></li>
+	</ul>
+
+			<!-- Canvas -->
+		<div id="debug"></div>
+		<div class="canvas">
+			<canvas id="canvas" width="700px" height="500px"></canvas>
+			<div class="shadow"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.getElementById('hider').onclick = function() {
+	      // document.getElementById('text').hidden = true;
+	      if(document.getElementById('block').style.display == "none") {
+	      	document.getElementById('block').style.display = "block";
+	      } else {
+	      	document.getElementById('block').style.display = "none";
+	      }
+	    }
+	</script>
+</body>
+</html>
